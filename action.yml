@@ -18,7 +18,7 @@ name: "Addon Factory slim action"
 description: "Produce splunk package"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/splunk/addonfactory-packaging-toolkit-action:v1.0.3"
+  image: "docker://ghcr.io/splunk/addonfactory-packaging-toolkit-action:v1.0.0"
 inputs:
   source:
     description: location of uncompressed source
