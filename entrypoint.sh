@@ -31,4 +31,6 @@ PACKAGE=$(ls build/package/splunkbase/*)
 slim partition $PACKAGE -o build/package/deployment/ || true
 slim validate $PACKAGE
 
+chmod -R +r build
+
 echo "::set-output name=OUTPUT::$PACKAGE"
