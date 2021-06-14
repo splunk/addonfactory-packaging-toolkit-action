@@ -16,7 +16,8 @@
 
 FROM python:3.7-slim
 
-RUN pip install https://download.splunk.com/misc/packaging-toolkit/splunk-packaging-toolkit-1.0.1.tar.gz
+RUN pip install semantic_version==2.6.0 ;\
+    pip install https://download.splunk.com/misc/packaging-toolkit/splunk-packaging-toolkit-1.0.1.tar.gz
 
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR /github/workspace
