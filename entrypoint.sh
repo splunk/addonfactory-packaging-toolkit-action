@@ -15,7 +15,12 @@
 #    limitations under the License.
 #   ######################################################################## 
 
-
+SOURCE_REGEX='^.*/$'
+if [[ $INPUT_SOURCE =~ $SOURCE_REGEX ]];
+then
+    echo Removing trailing / from INPUT_SOURCE slim is picky
+    INPUT_SOURCE=$(echo $INPUT_SOURCE | sed 's/\(.*\)\//\1/')
+fi
 slim generate-manifest $INPUT_SOURCE --update >/tmp/app.manifest   || true
 cp  /tmp/app.manifest  $INPUT_SOURCE/app.manifest
 mkdir -p build/package/splunkbase
