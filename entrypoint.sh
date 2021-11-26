@@ -31,7 +31,12 @@ for f in build/package/splunkbase/*.tar.gz; do
   n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.tar.gz/.spl/')
   mv $f $n
 done
+for f in build/package/splunkbase/*.spl; do
+  n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.spl/.tar.gz/')
+  mv $f $n
+done
 PACKAGE=$(ls build/package/splunkbase/*)
+
 
 slim partition $PACKAGE -o build/package/deployment/ || true
 
