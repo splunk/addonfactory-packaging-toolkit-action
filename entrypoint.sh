@@ -27,14 +27,14 @@ mkdir -p build/package/splunkbase
 mkdir -p build/package/deployment
 slim package -o build/package/splunkbase $INPUT_SOURCE 
 mkdir -p build/package/deployment
-for f in build/package/splunkbase/*.tar.gz; do
-  n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.tar.gz/.spl/')
-  mv $f $n
-done
+echo "before:"
+ls build/package/splunkbase/*
 for f in build/package/splunkbase/*.spl; do
   n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.spl/.tar.gz/')
   mv $f $n
 done
+echo "after:"
+ls build/package/splunkbase/*
 PACKAGE=$(ls build/package/splunkbase/*)
 
 
