@@ -15,6 +15,8 @@
 #    limitations under the License.
 #   ######################################################################## 
 
+set -o xtrace
+
 SOURCE_REGEX='^.*/$'
 if [[ $INPUT_SOURCE =~ $SOURCE_REGEX ]];
 then
@@ -24,9 +26,10 @@ fi
 slim generate-manifest $INPUT_SOURCE --update >/tmp/app.manifest   || true
 cp  /tmp/app.manifest  $INPUT_SOURCE/app.manifest
 mkdir -p build/package/splunkbase
-mkdir -p build/package/deployment
 slim package -o build/package/splunkbase $INPUT_SOURCE 
 mkdir -p build/package/deployment
+slim partition $PACKAGE -o build/package/deployment/ || true
+
 echo "before:"
 ls build/package/splunkbase/*
 for f in build/package/splunkbase/*.spl; do
@@ -36,9 +39,6 @@ done
 echo "after:"
 ls build/package/splunkbase/*
 PACKAGE=$(ls build/package/splunkbase/*)
-
-
-slim partition $PACKAGE -o build/package/deployment/ || true
 
 slim validate $PACKAGE
 
