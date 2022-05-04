@@ -27,17 +27,9 @@ mkdir -p build/package/splunkbase
 mkdir -p build/package/deployment
 slim package -o build/package/splunkbase $INPUT_SOURCE 
 mkdir -p build/package/deployment
-for f in build/package/splunkbase/*.tar.gz; do
-  n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.tar.gz/.spl/')
-  mv $f $n
-done
 PACKAGE=$(ls build/package/splunkbase/*)
 
 slim partition $PACKAGE -o build/package/deployment/ || true
-for f in build/package/deployment/*.tar.gz; do
-  n=$(echo $f | awk '{gsub("-[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+-?", "");print}' | sed 's/.tar.gz/.spl/')
-  mv $f $n
-done
 slim validate $PACKAGE
 
 chmod -R +r build
