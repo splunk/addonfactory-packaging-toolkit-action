@@ -42,4 +42,4 @@ slim validate $PACKAGE
 
 chmod -R +r build
 
-echo "::set-output name=OUTPUT::$PACKAGE"
+echo "OUTPUT=$PACKAGE" >> $GITHUB_OUTPUT
