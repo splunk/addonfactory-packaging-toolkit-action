@@ -29,7 +29,7 @@
           "replacements": [
             {
               "files": ["action.yml"],
-              "from": "image: \"docker://ghcr.io/splunk/addonfactory-packaging-toolkit-action:.*",
+              "from": "image: \"docker:\/\/ghcr.io\/splunk\/addonfactory-packaging-toolkit-action:.*",
               "to": "image: \"docker://ghcr.io/splunk/addonfactory-packaging-toolkit-action:${nextRelease.version}",
               "results": [
                 {
