@@ -26,14 +26,17 @@ on:
       - "main"
       - "develop"
 permissions:
-  actions: read
-  checks: write
-  contents: write
-  packages: write
-  statuses: write
+    contents: read
+    packages: read
 jobs:
   build:
     name: Build
+    permissions:
+      actions: read
+      contents: read
+      checks: write
+      packages: write
+      statuses: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -81,6 +84,11 @@ jobs:
     needs: build
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      checks: write
+      contents: write
+      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
