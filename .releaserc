@@ -30,7 +30,7 @@
             {
               "files": ["action.yml"],
               "from": "addonfactory-packaging-toolkit-action:.*",
-              "to": "addonfactory-packaging-toolkit-action:v${nextRelease.version}",
+              "to": "addonfactory-packaging-toolkit-action:v${nextRelease.version}\"",
               "results": [
                 {
                   "file": "action.yml",
